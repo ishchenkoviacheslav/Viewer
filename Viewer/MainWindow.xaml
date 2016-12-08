@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Viewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="600" Width="800">
+    <Grid x:Name="MainGrid" VerticalAlignment="Top" Margin="0" AllowDrop="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MaxHeight="150"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="199" />
+            <ColumnDefinition Width="Auto" MinWidth="198" />
+            <ColumnDefinition Width="Auto" MinWidth="198" />
+            <ColumnDefinition Width="Auto" MinWidth="197" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image1_1" Margin="5" Grid.Column="0" Height="150"/>
+        <Image x:Name="image1_2" Margin="5" Grid.Column="1" Height="150"/>
+        <Image x:Name="image1_3" Margin="5" Grid.Column="2" Height="150"/>
+        <Image x:Name="image1_4" Margin="5" Grid.Column="3" Height="150"/>
+
     </Grid>
 </Window>

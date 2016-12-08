@@ -23,6 +23,17 @@ namespace Viewer
         public MainWindow()
         {
             InitializeComponent();
+            this.AllowDrop = true;
+            MainGrid.AllowDrop = true;
+            MainGrid.Drop += MainGrid_Drop;
+            this.Drop += MainGrid_Drop;
+        }
+
+        private void MainGrid_Drop(object sender, DragEventArgs e)
+        {
+            MainGrid.Background = Brushes.Gold;
+            this.Background = Brushes.ForestGreen;
+            this.Title = "Drop";
         }
     }
 }
