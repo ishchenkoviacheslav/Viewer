@@ -5,23 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Viewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
-    <Grid x:Name="MainGrid" VerticalAlignment="Top" Margin="0" AllowDrop="True">
+        Title="MainWindow" Height="600" Width="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5">
+    <Grid x:Name="MainGrid" VerticalAlignment="Top" Margin="10" AllowDrop="True">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="199" />
-            <ColumnDefinition Width="Auto" MinWidth="198" />
-            <ColumnDefinition Width="Auto" MinWidth="198" />
-            <ColumnDefinition Width="Auto" MinWidth="197" />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MaxHeight="150"/>
+            <RowDefinition MaxHeight="150" MinHeight="100" />
         </Grid.RowDefinitions>
-        <!--<Image x:Name="image1_1" Margin="5" Grid.Column="0" Height="150"/>
-        <Image x:Name="image1_2" Margin="5" Grid.Column="1" Height="150"/>
-        <Image x:Name="image1_3" Margin="5" Grid.Column="2" Height="150"/>
-        <Image x:Name="image1_4" Margin="5" Grid.Column="3" Height="150"/>-->
+        
         <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="217" Margin="104,255,0,-322" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="267"/>
 
     </Grid>

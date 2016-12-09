@@ -16,7 +16,7 @@ using System.IO;
 
 namespace Viewer
 {
-    /// <summary>
+    /// <summary> Windows Photo Viewer supports images in BMP, JPEG, JPEG XR (formerly HD Photo), PNG, ICO, GIF and TIFF file formats.[7]
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
@@ -37,7 +37,14 @@ namespace Viewer
         private void myInitialize()
         {
             //изменить фильтр/паттерн поиска
-            List<string> allNamePictures = Directory.GetFiles(System.Environment.CurrentDirectory, "*.png").ToList();
+           List<string> listBmp = Directory.GetFiles(System.Environment.CurrentDirectory, "*.bmp").ToList();
+           List<string> listJpeg = Directory.GetFiles(System.Environment.CurrentDirectory, "*.jpeg").ToList();
+           List<string> listJpg = Directory.GetFiles(System.Environment.CurrentDirectory, "*.jpg").ToList();
+            List<string> listPng = Directory.GetFiles(System.Environment.CurrentDirectory, "*.png").ToList();
+           List<string> listIco = Directory.GetFiles(System.Environment.CurrentDirectory, "*.ico").ToList();
+           List<string> listGif = Directory.GetFiles(System.Environment.CurrentDirectory, "*.gif").ToList();
+           List<string> listTiff = Directory.GetFiles(System.Environment.CurrentDirectory, "*.tiff").ToList();
+            IEnumerable<string> allNamePictures = (((((listBmp.Concat(listJpeg)).Concat(listJpg)).Concat(listPng)).Concat(listIco)).Concat(listGif)).Concat(listTiff);
             foreach (string imgPath in allNamePictures)
             {
                 Image NewImage = new Image();
@@ -45,7 +52,7 @@ namespace Viewer
                 bitImg.BeginInit();
                 bitImg.UriSource = new Uri(imgPath);
                 bitImg.EndInit();
-                NewImage.Stretch = Stretch.Fill;
+                NewImage.Stretch = Stretch.Uniform;
                 NewImage.Source = bitImg;
                 NewImage.Height = 150;
                 Grid.SetRow(NewImage, Position.ROW);
@@ -58,40 +65,6 @@ namespace Viewer
             {
                 MainGrid.Children.Add(img);
             }
-            //добавление изначально имеющихся контролов, остальные будут добавлятся по необходимости
-            //allControls.Add(image1_1);
-            //allControls.Add(image1_2);
-            //allControls.Add(image1_3);
-            //allControls.Add(image1_4);
-            
-            //заполняем Image контролы, картинками из коллекции.
-            //foreach (Image img in allPictures)
-            //{
-            //    //if(image1_1.Source == null)
-            //    //{
-            //    //    image1_1.Source = img.Source;
-            //    //    continue;
-            //    //}
-            //    //if (image1_2.Source == null)
-            //    //{
-            //    //    image1_2.Source = img.Source;
-            //    //    continue;
-            //    //}
-            //    //if (image1_3.Source == null)
-            //    //{
-            //    //    image1_3.Source = img.Source;
-            //    //    continue;
-            //    //}
-            //    //if (image1_4.Source == null)
-            //    //{
-            //    //    image1_4.Source = img.Source;
-            //    //    continue;
-            //    //}
-            //    //else
-            //    //{
-            //        allControls.Add(img);
-            //    //}
-            //}
         }
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
