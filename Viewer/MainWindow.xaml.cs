@@ -22,7 +22,6 @@ namespace Viewer
     public partial class MainWindow : Window
     {
         List<Image> allPictures = new List<Image>();
-        //List<Image> allControls = new List<Image>();
         public MainWindow()
         {
             InitializeComponent();
@@ -49,12 +48,15 @@ namespace Viewer
                 NewImage.Stretch = Stretch.Fill;
                 NewImage.Source = bitImg;
                 NewImage.Height = 150;
+                Grid.SetRow(NewImage, Position.ROW);
+                Grid.SetColumn(NewImage, Position.COLUMN);
+                Position.NextPosition(MainGrid);
                 allPictures.Add(NewImage);
             }
 
             foreach (Image img in allPictures)
             {
-                MainGrid.
+                MainGrid.Children.Add(img);
             }
             //добавление изначально имеющихся контролов, остальные будут добавлятся по необходимости
             //allControls.Add(image1_1);
