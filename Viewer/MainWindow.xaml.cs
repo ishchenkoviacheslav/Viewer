@@ -57,7 +57,7 @@ namespace Viewer
                 NewImage.Height = 150;
                 NewImage.Width = 200;
                 NewImage.MinHeight = 150;
-                NewImage.Margin = new Thickness(5,5,5,5);
+                NewImage.Margin = new Thickness(2,2,2,2);
                 Grid.SetRow(NewImage, Position.ROW);
                 Grid.SetColumn(NewImage, Position.COLUMN);
                 Position.NextPosition(MainGrid);
