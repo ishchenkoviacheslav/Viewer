@@ -22,6 +22,7 @@
         <Image x:Name="image1_2" Margin="5" Grid.Column="1" Height="150"/>
         <Image x:Name="image1_3" Margin="5" Grid.Column="2" Height="150"/>
         <Image x:Name="image1_4" Margin="5" Grid.Column="3" Height="150"/>
+        <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="217" Margin="104,255,0,-322" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="267"/>
 
     </Grid>
 </Window>

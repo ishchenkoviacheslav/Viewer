@@ -31,6 +31,11 @@ namespace Viewer
 
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
+            textBox.Text = sender.GetType().ToString() + "\n";
+            foreach (string item in e.Data.GetFormats(true))
+            {
+                textBox.Text += item + "\n";
+            }
             //путь картинки
             Image myImage = new Image();
             BitmapImage bi3 = new BitmapImage();
