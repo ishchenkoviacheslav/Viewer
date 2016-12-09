@@ -55,6 +55,9 @@ namespace Viewer
                 NewImage.Stretch = Stretch.Uniform;
                 NewImage.Source = bitImg;
                 NewImage.Height = 150;
+                NewImage.Width = 200;
+                NewImage.MinHeight = 150;
+                NewImage.Margin = new Thickness(5,5,5,5);
                 Grid.SetRow(NewImage, Position.ROW);
                 Grid.SetColumn(NewImage, Position.COLUMN);
                 Position.NextPosition(MainGrid);

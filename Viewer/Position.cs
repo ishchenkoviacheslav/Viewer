@@ -33,7 +33,7 @@ namespace Viewer
             {
                 row++;
                 column = 0;
-                grid.RowDefinitions.Add(new RowDefinition());
+                grid.RowDefinitions.Add(new RowDefinition() { MinHeight = 170});
             }
         }
     }

@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:Viewer"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5">
+    <Window.Background>
+        <SolidColorBrush Color="Black" Opacity="0.5"/>
+    </Window.Background>
     <Grid x:Name="MainGrid" VerticalAlignment="Top" Margin="10" AllowDrop="True">
+        <Grid.Background>
+            <SolidColorBrush Color="Black" Opacity="0.5"/>
+        </Grid.Background>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,9 +22,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="150" MinHeight="100" />
+            <RowDefinition MinHeight="170" />
         </Grid.RowDefinitions>
-        
+
         <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="217" Margin="104,255,0,-322" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="267"/>
 
     </Grid>
