@@ -31,9 +31,19 @@ namespace Viewer
 
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
-            MainGrid.Background = Brushes.Gold;
-            this.Background = Brushes.ForestGreen;
-            this.Title = "Drop";
+            //путь картинки
+            Image myImage = new Image();
+            BitmapImage bi3 = new BitmapImage();
+            bi3.BeginInit();
+            bi3.UriSource = new Uri(@"C:\Users\user\Documents\visual studio 2015\Projects\Viewer\Viewer\bin\Debug\1.png");
+            bi3.EndInit();
+            myImage.Stretch = Stretch.Fill;
+            myImage.Source = bi3;
+            image1_1.Source = myImage.Source;
+            
+            //MainGrid.Background = Brushes.Gold;
+            //this.Background = Brushes.ForestGreen;
+            //this.Title = "Drop";
         }
     }
 }
