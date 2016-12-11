@@ -25,13 +25,11 @@ namespace Viewer
         public MainWindow()
         {
             InitializeComponent();
-            myInitialize();
-
+           // myInitialize();
 
             this.AllowDrop = true;
             MainGrid.AllowDrop = true;
             MainGrid.Drop += MainGrid_Drop;
-            this.Drop += MainGrid_Drop;
         }
 
         private void myInitialize()
@@ -72,13 +70,13 @@ namespace Viewer
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
             textBox.Text = sender.GetType().ToString() + "\n";
-            foreach (string item in e.Data.GetFormats(true))
-            {
-                textBox.Text += item + "\n";
-            }
+            //foreach (string item in e.Data.GetFormats(true))
+            //{
+            //    textBox.Text += item + "\n";
+            //}
             //путь картинки
-            
-           // image1_1.Source = myImage.Source;
+
+            // image1_1.Source = myImage.Source;
 
             //MainGrid.Background = Brushes.Gold;
             //this.Background = Brushes.ForestGreen;
