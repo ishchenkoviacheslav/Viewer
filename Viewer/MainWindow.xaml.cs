@@ -49,6 +49,7 @@ namespace Viewer
                 bitImg.BeginInit();
                 bitImg.UriSource = new Uri(imgPath);
                 bitImg.EndInit();
+                NewImage.Name = imgPath;
                 NewImage.Stretch = Stretch.Uniform;
                 NewImage.Source = bitImg;
                 NewImage.Height = 150;
@@ -81,6 +82,7 @@ namespace Viewer
                 bitImg.BeginInit();
                 bitImg.UriSource = new Uri(str);
                 bitImg.EndInit();
+                NewImage.Name = @str;
                 NewImage.Stretch = Stretch.Uniform;
                 NewImage.Source = bitImg;
                 NewImage.Height = 150;
@@ -90,6 +92,22 @@ namespace Viewer
                 Grid.SetRow(NewImage, Position.ROW);
                 Grid.SetColumn(NewImage, Position.COLUMN);
                 Position.NextPosition(MainGrid);
+               // этот код нужен только при добавлении первой картинки
+                if (allPictures.Count == 0)
+                {
+                    allPictures.Add(NewImage);
+                    //тут могут быть вопросы...
+                    MainGrid.Children.Add(NewImage);
+                    return;
+                }
+                foreach (Image imgSrc in allPictures)
+                {
+                    if (imgSrc.Name==NewImage.Name)
+                    {
+                        MessageBox.Show(string.Format("Изображение {0} уже имеется",NewImage.Name));
+                        return;
+                    }
+                }
                 allPictures.Add(NewImage);
                 //тут могут быть вопросы...
                 MainGrid.Children.Add(NewImage);
