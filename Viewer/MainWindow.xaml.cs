@@ -27,7 +27,6 @@ namespace Viewer
             InitializeComponent();
            // myInitialize();
 
-            this.AllowDrop = true;
             MainGrid.AllowDrop = true;
             MainGrid.Drop += MainGrid_Drop;
         }
@@ -69,7 +68,100 @@ namespace Viewer
         }
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
-            textBox.Text = sender.GetType().ToString() + "\n";
+            if(e.Data.GetDataPresent(DataFormats.Bitmap))
+            {
+                textBox.Text = "BITMAP";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Rtf))
+            {
+                textBox.Text = "RTF";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                textBox.Text = "TEXT";
+            }
+            if (e.Data.GetDataPresent(DataFormats.CommaSeparatedValue))
+            {
+                textBox.Text = "CommaSeparatedValue";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Dib))
+            {
+                textBox.Text = "Dib";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Dif))
+            {
+                textBox.Text = "Dif";
+            }
+            if(e.Data.GetDataPresent(DataFormats.EnhancedMetafile))
+            {
+                textBox.Text = "EnhancedMetafile";
+            }
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                FileDrop
+                ()e.Data.GetData(DataFormats.FileDrop);
+                textBox.Text = "FileDrop";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Html))
+            {
+                textBox.Text = "Html";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Locale))
+            {
+                textBox.Text = "Locale";
+            }
+            if (e.Data.GetDataPresent(DataFormats.MetafilePicture))
+            {
+                textBox.Text = "MetafilePicture";
+            }
+            if (e.Data.GetDataPresent(DataFormats.OemText))
+            {
+                textBox.Text = "OemText";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Palette))
+            {
+                textBox.Text = "Palette";
+            }
+            if (e.Data.GetDataPresent(DataFormats.PenData))
+            {
+                textBox.Text = "PenData";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Riff))
+            {
+                textBox.Text = "Riff";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Serializable))
+            {
+                textBox.Text = "Serializable";
+            }
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                textBox.Text = "StringFormat";
+            }
+            if (e.Data.GetDataPresent(DataFormats.SymbolicLink))
+            {
+                textBox.Text = "SymbolicLink";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Tiff))
+            {
+                textBox.Text = "Tiff";
+            }
+            if (e.Data.GetDataPresent(DataFormats.UnicodeText))
+            {
+                textBox.Text = "UnicodeText";
+            }
+            if (e.Data.GetDataPresent(DataFormats.WaveAudio))
+            {
+                textBox.Text = "WaveAudio";
+            }
+            if (e.Data.GetDataPresent(DataFormats.Xaml))
+            {
+                textBox.Text = "XAML";
+            }
+            if (e.Data.GetDataPresent(DataFormats.XamlPackage))
+            {
+                textBox.Text = "XamlPackage";
+            }
             //foreach (string item in e.Data.GetFormats(true))
             //{
             //    textBox.Text += item + "\n";
