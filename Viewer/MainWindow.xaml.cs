@@ -87,7 +87,7 @@ namespace Viewer
                 bitImg.BeginInit();
                 bitImg.UriSource = ((BitmapImage)img.Source).UriSource;
                 bitImg.EndInit();
-                bigCopy.Tag = System.IO.Path.GetFileName((string)img.Tag);
+                bigCopy.Tag = (string)img.Tag;
                 bigCopy.StretchDirection = StretchDirection.Both;
                 bigCopy.Source = bitImg;
                
@@ -97,17 +97,17 @@ namespace Viewer
                 Grid.SetRowSpan(bigCopy, 2);
                 FirstGrid.Children.Add(bigCopy);
 
-                Button up = new Button() { Content = "NEXT" };
-                up.Click += Up_Click; ;
-                Grid.SetColumn(up, 1);
-                Grid.SetRow(up, 0);
-                FirstGrid.Children.Add(up);
+                Button prev = new Button() { Content = "PREV" };
+                prev.Click += Prev_Click; ;
+                Grid.SetColumn(prev, 1);
+                Grid.SetRow(prev, 1);
+                FirstGrid.Children.Add(prev);
 
-                Button down = new Button() { Content = "PREV" };
-                down.Click += Down_Click; ;
-                Grid.SetColumn(down, 1);
-                Grid.SetRow(down, 1);
-                FirstGrid.Children.Add(down);
+                Button next = new Button() { Content = "NEXT" };
+                next.Click += Next_Click;
+                Grid.SetColumn(next, 1);
+                Grid.SetRow(next, 0);
+                FirstGrid.Children.Add(next);
 
                 this.KeyDown += BigCopy_KeyDown;
 
@@ -115,25 +115,129 @@ namespace Viewer
             }
         }
 
-        private void Down_Click(object sender, RoutedEventArgs e)
+        private void Next_Click(object sender, RoutedEventArgs e)
         {
-                Title = "down";
+            Image currImg = FirstGrid.Children.OfType<Image>().ToList().FirstOrDefault();
+            for (int i = 0; i < allPictures.Count; i++)
+            {
+                //найти в списке нужное изображение
+                if((string)currImg.Tag == (string)allPictures[i].Tag)
+                {
+                    //проверка на первое и последнее изобр.
+                    if(i< (allPictures.Count-1) )
+                    {
+                        Image bigCopy = new Image();
+                        BitmapImage bitImg = new BitmapImage();
+                        bitImg.BeginInit();
+                        bitImg.UriSource = ((BitmapImage)allPictures[i+1].Source).UriSource;
+                        bitImg.EndInit();
+                        bigCopy.Tag = (string)allPictures[i+1].Tag;
+                        bigCopy.StretchDirection = StretchDirection.Both;
+                        bigCopy.Source = bitImg;
+
+                        Grid.SetColumn(bigCopy, 0);
+                        Grid.SetRowSpan(bigCopy, 2);
+                        FirstGrid.Children.RemoveAt(0);
+                        FirstGrid.Children.Insert(0,bigCopy);
+
+                        return;
+                    }
+                }
+            }
         }
 
-        private void Up_Click(object sender, RoutedEventArgs e)
+        private void Prev_Click(object sender, RoutedEventArgs e)
         {
-                Title = "up";
+            Image currImg = FirstGrid.Children.OfType<Image>().ToList().FirstOrDefault();
+            for (int i = 0; i < allPictures.Count; i++)
+            {
+                //найти в списке нужное изображение
+                if ((string)currImg.Tag == (string)allPictures[i].Tag)
+                {
+                    //проверка на первое и последнее изобр.
+                    if (i>0)
+                    {
+                        Image bigCopy = new Image();
+                        BitmapImage bitImg = new BitmapImage();
+                        bitImg.BeginInit();
+                        bitImg.UriSource = ((BitmapImage)allPictures[i - 1].Source).UriSource;
+                        bitImg.EndInit();
+                        bigCopy.Tag = (string)allPictures[i - 1].Tag;
+                        bigCopy.StretchDirection = StretchDirection.Both;
+                        bigCopy.Source = bitImg;
+
+                        Grid.SetColumn(bigCopy, 0);
+                        Grid.SetRowSpan(bigCopy, 2);
+                        FirstGrid.Children.RemoveAt(0);
+                        FirstGrid.Children.Insert(0, bigCopy);
+
+                        return;
+                    }
+                }
+            }
         }
 
         private void BigCopy_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Down)
             {
-                Title = "down";
+                Image currImg = FirstGrid.Children.OfType<Image>().ToList().FirstOrDefault();
+                for (int i = 0; i < allPictures.Count; i++)
+                {
+                    //найти в списке нужное изображение
+                    if ((string)currImg.Tag == (string)allPictures[i].Tag)
+                    {
+                        //проверка на первое и последнее изобр.
+                        if (i > 0)
+                        {
+                            Image bigCopy = new Image();
+                            BitmapImage bitImg = new BitmapImage();
+                            bitImg.BeginInit();
+                            bitImg.UriSource = ((BitmapImage)allPictures[i - 1].Source).UriSource;
+                            bitImg.EndInit();
+                            bigCopy.Tag = (string)allPictures[i - 1].Tag;
+                            bigCopy.StretchDirection = StretchDirection.Both;
+                            bigCopy.Source = bitImg;
+
+                            Grid.SetColumn(bigCopy, 0);
+                            Grid.SetRowSpan(bigCopy, 2);
+                            FirstGrid.Children.RemoveAt(0);
+                            FirstGrid.Children.Insert(0, bigCopy);
+
+                            return;
+                        }
+                    }
+                }
             }
             if (e.Key == Key.Up)
             {
-                Title = "up";
+                Image currImg = FirstGrid.Children.OfType<Image>().ToList().FirstOrDefault();
+                for (int i = 0; i < allPictures.Count; i++)
+                {
+                    //найти в списке нужное изображение
+                    if ((string)currImg.Tag == (string)allPictures[i].Tag)
+                    {
+                        //проверка на первое и последнее изобр.
+                        if (i < (allPictures.Count - 1))
+                        {
+                            Image bigCopy = new Image();
+                            BitmapImage bitImg = new BitmapImage();
+                            bitImg.BeginInit();
+                            bitImg.UriSource = ((BitmapImage)allPictures[i + 1].Source).UriSource;
+                            bitImg.EndInit();
+                            bigCopy.Tag = (string)allPictures[i + 1].Tag;
+                            bigCopy.StretchDirection = StretchDirection.Both;
+                            bigCopy.Source = bitImg;
+
+                            Grid.SetColumn(bigCopy, 0);
+                            Grid.SetRowSpan(bigCopy, 2);
+                            FirstGrid.Children.RemoveAt(0);
+                            FirstGrid.Children.Insert(0, bigCopy);
+
+                            return;
+                        }
+                    }
+                }
             }
             //вернуть общий вид всех изображений
             if(e.Key == Key.Escape)
