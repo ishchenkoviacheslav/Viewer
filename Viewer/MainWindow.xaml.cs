@@ -74,9 +74,13 @@ namespace Viewer
             if(e.ClickCount==2)
             {
                 Image img = sender as Image;
-                //MainGrid.Children.Clear();
-                //MainGrid.RowDefinitions.Clear();
-                //MainGrid.ColumnDefinitions.Clear();
+                
+                //освободжаем место в окне
+                FirstGrid.Children.Clear();
+                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition() { MaxWidth = 100 });
+                FirstGrid.RowDefinitions.Add(new RowDefinition());
+                FirstGrid.RowDefinitions.Add(new RowDefinition());
 
                 Image bigCopy = new Image();
                 BitmapImage bitImg = new BitmapImage();
@@ -87,11 +91,7 @@ namespace Viewer
                 bigCopy.StretchDirection = StretchDirection.Both;
                 bigCopy.Source = bitImg;
                
-                FirstGrid.Children.Clear();
-                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition());
-                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition() { MaxWidth = 100 });
-                FirstGrid.RowDefinitions.Add(new RowDefinition());
-                FirstGrid.RowDefinitions.Add(new RowDefinition());
+                
 
                 Grid.SetColumn(bigCopy, 0);
                 Grid.SetRowSpan(bigCopy, 2);
@@ -135,6 +135,7 @@ namespace Viewer
             {
                 Title = "up";
             }
+            //вернуть общий вид всех изображений
             if(e.Key == Key.Escape)
             {
                 this.KeyDown -= BigCopy_KeyDown;
