@@ -56,6 +56,7 @@ namespace Viewer
                 NewImage.Width = 200;
                 NewImage.MinHeight = 150;
                 NewImage.Margin = new Thickness(2, 2, 2, 2);
+                NewImage.MouseDown += NewImage_MouseDown;
                 Grid.SetRow(NewImage, Position.ROW);
                 Grid.SetColumn(NewImage, Position.COLUMN);
                 Position.NextPosition(MainGrid);
@@ -67,6 +68,84 @@ namespace Viewer
                 MainGrid.Children.Add(img);
             }
         }
+
+        private void NewImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ClickCount==2)
+            {
+                Image img = sender as Image;
+                //MainGrid.Children.Clear();
+                //MainGrid.RowDefinitions.Clear();
+                //MainGrid.ColumnDefinitions.Clear();
+
+                Image bigCopy = new Image();
+                BitmapImage bitImg = new BitmapImage();
+                bitImg.BeginInit();
+                bitImg.UriSource = ((BitmapImage)img.Source).UriSource;
+                bitImg.EndInit();
+                bigCopy.Tag = System.IO.Path.GetFileName((string)img.Tag);
+                bigCopy.StretchDirection = StretchDirection.Both;
+                bigCopy.Source = bitImg;
+               
+                FirstGrid.Children.Clear();
+                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                FirstGrid.ColumnDefinitions.Add(new ColumnDefinition() { MaxWidth = 100 });
+                FirstGrid.RowDefinitions.Add(new RowDefinition());
+                FirstGrid.RowDefinitions.Add(new RowDefinition());
+
+                Grid.SetColumn(bigCopy, 0);
+                Grid.SetRowSpan(bigCopy, 2);
+                FirstGrid.Children.Add(bigCopy);
+
+                Button up = new Button() { Content = "NEXT" };
+                up.Click += Up_Click; ;
+                Grid.SetColumn(up, 1);
+                Grid.SetRow(up, 0);
+                FirstGrid.Children.Add(up);
+
+                Button down = new Button() { Content = "PREV" };
+                down.Click += Down_Click; ;
+                Grid.SetColumn(down, 1);
+                Grid.SetRow(down, 1);
+                FirstGrid.Children.Add(down);
+
+                this.KeyDown += BigCopy_KeyDown;
+
+                this.Drop -= MainGrid_Drop;
+            }
+        }
+
+        private void Down_Click(object sender, RoutedEventArgs e)
+        {
+                Title = "down";
+        }
+
+        private void Up_Click(object sender, RoutedEventArgs e)
+        {
+                Title = "up";
+        }
+
+        private void BigCopy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                Title = "down";
+            }
+            if (e.Key == Key.Up)
+            {
+                Title = "up";
+            }
+            if(e.Key == Key.Escape)
+            {
+                this.KeyDown -= BigCopy_KeyDown;
+                FirstGrid.RowDefinitions.Clear();
+                FirstGrid.ColumnDefinitions.Clear();
+                FirstGrid.Children.Clear();
+                FirstGrid.Children.Add(myScroll);
+                this.Drop += MainGrid_Drop;
+            }
+        }
+
         private void MainGrid_Drop(object sender, DragEventArgs e)
         {
             try
