@@ -33,7 +33,6 @@ namespace Viewer
 
         private void myInitialize()
         {
-            //изменить фильтр/паттерн поиска
             List<string> listBmp = Directory.GetFiles(System.Environment.CurrentDirectory, "*.bmp").ToList();
             List<string> listJpeg = Directory.GetFiles(System.Environment.CurrentDirectory, "*.jpeg").ToList();
             List<string> listJpg = Directory.GetFiles(System.Environment.CurrentDirectory, "*.jpg").ToList();
@@ -209,6 +208,7 @@ namespace Viewer
                     }
                 }
             }
+
             if (e.Key == Key.Up)
             {
                 Image currImg = FirstGrid.Children.OfType<Image>().ToList().FirstOrDefault();
@@ -271,7 +271,7 @@ namespace Viewer
                     NewImage.Width = 200;
                     NewImage.MinHeight = 150;
                     NewImage.Margin = new Thickness(2, 2, 2, 2);
-
+                    NewImage.MouseDown += NewImage_MouseDown;
 
                     //добавляем все кроме повторяющихся
                     bool copy = false;
@@ -286,7 +286,6 @@ namespace Viewer
                     if (copy == false)
                     {
                         allPictures.Add(NewImage);
-                        //allPictures = allPictures.Distinct(new ImageComparer()).ToList();
                         MainGrid.Children.Add(NewImage);
                         Grid.SetRow(NewImage, Position.ROW);
                         Grid.SetColumn(NewImage, Position.COLUMN);
@@ -304,129 +303,6 @@ namespace Viewer
                 return;
             }
         }
-
-        //if(e.Data.GetDataPresent(DataFormats.Bitmap))
-        //{
-        //    textBox.Text = "BITMAP";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Rtf))
-        //{
-        //    textBox.Text = "RTF";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Text))
-        //{
-        //    textBox.Text = "TEXT";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.CommaSeparatedValue))
-        //{
-        //    textBox.Text = "CommaSeparatedValue";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Dib))
-        //{
-        //    textBox.Text = "Dib";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Dif))
-        //{
-        //    textBox.Text = "Dif";
-        //}
-        //if(e.Data.GetDataPresent(DataFormats.EnhancedMetafile))
-        //{
-        //    textBox.Text = "EnhancedMetafile";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        //{
-        //    textBox.Text = "FileDrop";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Html))
-        //{
-        //    textBox.Text = "Html";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Locale))
-        //{
-        //    textBox.Text = "Locale";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.MetafilePicture))
-        //{
-        //    textBox.Text = "MetafilePicture";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.OemText))
-        //{
-        //    textBox.Text = "OemText";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Palette))
-        //{
-        //    textBox.Text = "Palette";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.PenData))
-        //{
-        //    textBox.Text = "PenData";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Riff))
-        //{
-        //    textBox.Text = "Riff";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Serializable))
-        //{
-        //    textBox.Text = "Serializable";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.StringFormat))
-        //{
-        //    textBox.Text = "StringFormat";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.SymbolicLink))
-        //{
-        //    textBox.Text = "SymbolicLink";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Tiff))
-        //{
-        //    textBox.Text = "Tiff";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.UnicodeText))
-        //{
-        //    textBox.Text = "UnicodeText";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.WaveAudio))
-        //{
-        //    textBox.Text = "WaveAudio";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.Xaml))
-        //{
-        //    textBox.Text = "XAML";
-        //}
-        //if (e.Data.GetDataPresent(DataFormats.XamlPackage))
-        //{
-        //    textBox.Text = "XamlPackage";
-        //}
-        //foreach (string item in e.Data.GetFormats(true))
-        //{
-        //    textBox.Text += item + "\n";
-        //}
-        //путь картинки
-
-        // image1_1.Source = myImage.Source;
-
-        //MainGrid.Background = Brushes.Gold;
-        //this.Background = Brushes.ForestGreen;
-        //this.Title = "Drop";
-
-        // Загрузить все файлы *.jpg и создать новую папку для модифицированных данных,
-        //string[] files = Directory.GetFiles(@"C:\Users\Public\Pictures\Sample Pictures", "*.jpg", SearchOption.AllDirectories);
-        //string newDir = @"C:\ModifiedPictures";
-        //Directory.CreateDirectory(newDir);
-        //// Обработать данные изображений в блокирующей манере.
-        //foreach (string currentFile in files)
-        //{
-        //    string filename = System.IO.Path.GetFileName(currentFile);
-        //    using (Bitmap bitmap = new Bitmap(currentFile))
-        //    {
-        //        bitmap.RotateFlip(RotateFlipType.Rotatel80FlipNone);
-        //        bitmap.Save(Path.Combine(newDir, filename));
-        //        // Вывести идентификатор потока, обрабатывающего текущее изображение.
-        //        this.Text = string.Format("Processing {0} on thread {1}", filename,
-        //        Thread.CurrentThread.ManagedThreadId);
-        //    }
-        //}
-
     }
 }
 
